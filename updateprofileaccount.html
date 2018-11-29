@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)https://s.codepen.io/atakan/fullpage/gqbIz -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico">
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111">
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico">
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111">
+  <title>Form Update</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	
+
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/pwd.css">
+  
+  
+    
+
+  
+      <style>
+
+	  input[type=button] {
+  font-family: Montserrat-Bold;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #fff;
+  text-transform: uppercase;
+
+  width: 100%;
+  height: 50px;
+  border-radius: 25px;
+  background: #57b846;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 25px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+input[type=button]:hover {
+  background: #333333;
+}
+
+
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+	display: none;
+}
+
+/*progressbar*/
+#progressbar {
+top:-30px;
+	margin-bottom: 0px;
+	overflow: hidden;
+	/*CSS counters to number the steps*/
+	counter-reset: step;
+}
+#progressbar li {
+text-align:center;
+	list-style-type: none;
+	color: black;
+	font-size: 15px;
+	width: 33.33%;
+	float: left;
+	position: relative;
+}
+#progressbar li:before {
+	content: counter(step);
+	counter-increment: step;
+	width: 120px;
+	line-height: 20px;
+	display: block;
+	font-size: 10px;
+	color: black;
+	background: blue;
+	border-radius: 3px;
+	margin: 10px auto 10px auto;
+}
+/*progressbar connectors*/
+#progressbar li:after {
+	content: '';
+	width: 150%;
+	height: 2px;
+	background: black;
+	position: absolute;
+	left: -50%;
+	top: 9px;
+	z-index: -2; /*put it behind the numbers*/
+}
+#progressbar li:first-child:after {
+	/*connector not needed before the first step*/
+	
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,  #progressbar li.active:after{
+	background: green;
+	color: black;
+}
+
+    </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+<script>
+var file1=window.location.href;
+var url=new URL(file1);
+var name=url.searchParams.get("name");
+var email=url.searchParams.get("email");
+var password=url.searchParams.get("password");
+var phone=url.searchParams.get("phone");
+var type=url.searchParams.get("type");
+
+
+</script>
+
+</head>
+
+<body translate="no">
+
+  <!-- multistep form -->
+<div id="msform">
+  <!-- progressbar -->
+ 
+  <!-- fieldsets -->
+  	<div class="limiter">
+	
+		<div class="container-login100">
+		
+		 
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="images/img-01.png" alt="IMG">
+				</div>
+				<ul id="progressbar">
+    <li class="active">Basic Details</li>
+    <li id="sd">Skill Details</li>
+    <li id="sd1">Location Details</li>
+  </ul>
+	<div id="left" style="position:relative; left:400px; top:-180px;">	
+	
+<!--==================================================================================================------------------->
+
+	
+  <fieldset id="fs1">
+   <span class="login100-form-title">
+						Update Your Profile
+					</span>
+  
+    <div class="wrap-input100 validate-input" data-validate = "Valid Type of work Required" >
+						<select  class="input100" name="ID" id="ID" required>
+						
+						 <option value="" disabled selected hidden>Your ID </option>
+                         <option value="Adhar">Adhar Card</option>
+                         <option value="Dl">Driving Licence</option>
+						 <option value="voterid">Voter Id</option> 
+                        </select>	
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-id-card-o" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate = "Valid id number is required">
+						<input class="input100" type="text" name="idno" placeholder="ID number" id="idno" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+						<i class="fa fa-id-card-o" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Valid pic">
+						 <input class="input100" type="file" name="pic" placeholder="Add your id file" id="idimg" accept="image/*" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+						<i class="fa fa-file-image-o" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate = "Valid City Required">
+						<input id="city" class="input100" type="text" name="city" placeholder="City" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-home" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate = "Valid Date Required">
+						<input id="date" class="input100" type="date" name="date" placeholder="date of birth" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-calendar" aria-hidden="true"></i>
+						</span>
+					</div>
+						<div class="container-login100-form-btn">
+						<button class="login100-form-btn" id="next1">
+							Next
+						</button>
+						
+					</div>
+					
+				 
+  </fieldset>
+  
+  
+ 
+  
+   <!--Account++++++++++++++++++++++++++++++++-----------------+++++++++++========================================_------------>
+  
+   
+  <fieldset id="fs-account">
+   <span class="login100-form-title">
+						My Skills
+					</span>
+<!--====================================================================================================================================-->
+<!----------------------------------------------common Fields----------------------------------------------->
+  
+  
+  <div class="wrap-input100 validate-input" data-validate = "Valid pic">
+						 <input id="profile_pic" class="input100" type="file" name="profileacc" placeholder="Add your profile photo" accept="image/*" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+						<i class="fa fa-file-image-o" aria-hidden="true"></i>
+						</span>
+					</div>
+						
+						
+	<div class="wrap-input100 validate-input" data-validate = "Valid id number is required">
+						<input id="skills" class="input100" type="textarea" name="skills" placeholder="your skills and talents" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-university" aria-hidden="true"></i>
+						</span>
+					</div>					
+	<div class="wrap-input100 validate-input" data-validate = "Valid Type of work Required" >
+						<select id="work_type" class="input100" name="work_type" required>
+						
+						 <option value="" disabled selected hidden>Your working type </option>
+                         <option value="Fresher">Fresher</option>
+                         <option value="Experienced">Expirienced</option>
+                        </select>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-briefcase" aria-hidden="true"></i>
+						</span>
+					</div>					
+						
+					
+<div class="wrap-input100 validate-input" data-validate = "Valid id number is required">
+						<input id="institute" class="input100" type="text" name="institute" placeholder="If any ,Working Institution" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-university" aria-hidden="true"></i>
+						</span>
+					</div>					
+	
+					<div class="wrap-input100 validate-input" data-validate = "Valid pic">
+						 <input id="awarddoc" class="input100" type="file" name="awarddoc" placeholder="Awards and certifiactes" accept="image/*" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+						<i class="fa fa-trophy" aria-hidden="true"></i>
+						</span>
+					</div>		
+
+ <div class="wrap-input100 validate-input" data-validate = "Valid id number is required">
+						<input id="accprice" class="input100" type="text" name="accsprice" placeholder="Cost per hour" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-money" aria-hidden="true"></i>
+						</span>
+					</div>		
+
+<div class="wrap-input100 validate-input" data-validate = "Valid id number is required">
+						<input id="avilable_from" class="input100" type="time" name="avilable_from" placeholder="avilable from" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-clock-o" aria-hidden="true"></i>
+						</span>
+					</div>	
+
+
+ <div class="wrap-input100 validate-input" data-validate = "Valid id number is required">
+						<input id="avilable_to" class="input100" type="time" name="avalible_to" placeholder="available upto" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-clock-o" aria-hidden="true"></i>
+						</span>
+					</div>
+
+<!--=====================================================================================================================================--->
+<!----------==========================uncommon----------------------------------------========================------>					
+						
+				 <div class="wrap-input100 validate-input" data-validate = "Valid id number is required">
+						<input id="qualification" class="input100" type="text" name="qualification" placeholder="Qualification" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-university" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Valid id number is required">
+						<input id="DLno" class="input100" type="text" name="DLno" placeholder="Your DL no" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-university" aria-hidden="true"></i>
+						</span>
+					</div>
+					 
+					
+					
+<!-------------------------------------------------------------------------------------------------------------------------->					
+				
+					 
+					
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" id="next2">
+							Next
+						</button>
+						
+					</div>
+					
+					
+					
+  </fieldset>
+  
+  
+  
+  <!--- Location ========================================================++++++++++++++hhdkjh====================---->
+  <fieldset id="fs3">
+   <span class="login100-form-title">
+						Service Area
+					</span>
+					
+                    <div class="wrap-input100 validate-input" data-validate = "Valid Address Required">
+						<input  id="address1" class="input100" type="text" name="add1" placeholder="Address1" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-address-book" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Valid Address Required">
+						<input id="address2" class="input100" type="text" name="add2" placeholder="Address2" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-address-book" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Valid pincode required">
+						<input id="pincode" class="input100" type="number" name="pincode" placeholder="Pincode" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-address-book" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" id="next3">
+							Submit
+						</button>
+						
+					</div> 
+				 
+  </fieldset>
+  </div>
+
+			</div>
+		</div>
+	</div>
+	</div>
+	</body></html>
+    <script src="./stopExecutionOnTimeout-41c52890748cd7143004e05d3c5f786c66b19939c4500ce446314d1748483e13.js.download"></script>
+
+  <script src="./jquery.min.js.download"></script>
+<script src="./jquery.easing.min.js.download"></script>
+
+  
+
+    <script>
+      
+//jQuery time
+var current_fs, next_fs, previous_fs; //fieldsets
+var left, opacity, scale; //fieldset properties which we will animate
+var animating; //flag to prevent quick multi-click glitches
+
+$(".next").click(function () {
+	if (animating) return false;
+	animating = true;
+
+	current_fs = $(this).parent();
+	next_fs = $(this).parent().next();
+
+	//activate next step on progressbar using the index of next_fs
+	$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+	//show the next fieldset
+	next_fs.show();
+	//hide the current fieldset with style
+	current_fs.animate({ opacity: 0 }, {
+		step: function step(now, mx) {
+			//as the opacity of current_fs reduces to 0 - stored in "now"
+			//1. scale current_fs down to 80%
+			scale = 1 - (1 - now) * 0.2;
+			//2. bring next_fs from the right(50%)
+			left = now * 50 + "%";
+			//3. increase opacity of next_fs to 1 as it moves in
+			opacity = 1 - now;
+			current_fs.css({
+				'transform': 'scale(' + scale + ')',
+				'position': 'absolute' });
+
+			next_fs.css({ 'left': left, 'opacity': opacity });
+		},
+		duration: 800,
+		complete: function complete() {
+			current_fs.hide();
+			animating = false;
+		},
+		//this comes from the custom easing plugin
+		easing: 'easeInOutBack' });
+
+});
+
+$(".previous").click(function () {
+	if (animating) return false;
+	animating = true;
+
+	current_fs = $(this).parent();
+	previous_fs = $(this).parent().prev();
+
+	//de-activate current step on progressbar
+	$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+	//show the previous fieldset
+	previous_fs.show();
+	//hide the current fieldset with style
+	current_fs.animate({ opacity: 0 }, {
+		step: function step(now, mx) {
+			//as the opacity of current_fs reduces to 0 - stored in "now"
+			//1. scale previous_fs from 80% to 100%
+			scale = 0.8 + (1 - now) * 0.2;
+			//2. take current_fs to the right(50%) - from 0%
+			left = (1 - now) * 50 + "%";
+			//3. increase opacity of previous_fs to 1 as it moves in
+			opacity = 1 - now;
+			current_fs.css({ 'left': left });
+			previous_fs.css({ 'transform': 'scale(' + scale + ')', 'opacity': opacity });
+		},
+		duration: 800,
+		complete: function complete() {
+			current_fs.hide();
+			animating = false;
+		},
+		//this comes from the custom easing plugin
+		easing: 'easeInOutBack' });
+
+});
+
+      //# sourceURL=pen.js
+    </script>
+
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+	<script src="vendor/select2/select2.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+
+	<script src="js/main1.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+  $(document).ready(function() {
+  
+   $("#next3").click(function(){
+  
+ 
+  
+  var pin=document.getElementById("pincode").value;
+  var add1=document.getElementById("address1").value;
+  var add2=document.getElementById("address2").value;
+  var wid=sessionStorage.getItem("worker_id");
+  
+  $.post("location_process.php",{wid:wid,add1:add1,add2:add2,pin:pin},
+         function(data){
+	
+	window.location.href="worker_dashboard.php?wid="+wid;
+	});
+ 
+  
+  });
+  
+ $("#next1").click(function(){
+ var id=document.getElementById("ID").value;
+  var idno=document.getElementById("idno").value;
+ var imgpath=document.getElementById("idimg").value;
+  var city=document.getElementById("city").value;
+  var dob=document.getElementById("date").value;
+ 
+ var wid=sessionStorage.getItem("worker_id");
+ 
+ 
+   
+	
+	/* $.post("basicdetails_process.php",{id:id,idno:idno,imgpath:idimg,city:city,dob:dob,wid:wid},
+	function(data){
+	
+	
+	}); */
+	basic_details(id,idno,city,imgpath,dob,wid);
+	
+	$("#fs1").hide();
+	$("#fs-account").show();
+	 $("#sd").addClass("active");
+});
+
+
+ $("#next2").click(function(){
+ 
+  var profile_img=document.getElementById("profile_pic").value;
+  var qualification=document.getElementById("qualification").value;
+  var work_type=document.getElementById("work_type").value;
+  var institute=document.getElementById("institute").value;
+  var certifiacte=document.getElementById("awarddoc").value;
+  var cost=document.getElementById("accprice").value;
+  var avilable_from=document.getElementById("avilable_from").value;
+  var avilable_to=document.getElementById("avilable_to").value;
+  
+  
+  var skills=document.getElementById("skills").value;
+  var DLno=document.getElementById("DLno").value;
+  
+   var wid=sessionStorage.getItem("worker_id");
+   
+   
+	$("#fs1").hide();
+	$("#fs-account").hide();
+	$("#fs3").show();
+	 $("#sd1").addClass("active");
+	
+	 
+	 
+	 $.ajax({
+      type: "POST",
+      url: "skillaccount_process.php",
+      data: {wid:wid,profile_img:profile_img,qualification:qualification,work_type:work_type,institute:institute,certifiacte:certifiacte,cost:cost,avilable_from:avilable_from,avilable_to:avilable_to,skills:skills,DLno:DLno},
+      dataType: "json",
+      success: function(data){
+          
+      }
+});
+});
+
+});
+  </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+function basic_details(id,idno,city,imgpath,dob,wid){
+
+/*
+$.post("basicdetails_process.php",{id:id,idno:idno,imgpath:idimg,city:city,dob:dob,wid:wid},
+	function(data){
+	
+	
+	});  */
+	
+	
+	$.ajax({
+      type: "POST",
+      url: "basicdetails_process.php",
+      data: {id:id,idno:idno,city:city,imgpath:imgpath,dob:dob,wid:wid},
+      dataType: "json",
+      success: function(data){
+          
+      }
+});
+
+}
+
+</script>
+
+
+ 

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Worker Register</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	
+
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/pwd.css">
+	<script>
+	var check = function() {
+  if (document.getElementById('password').value ==
+    document.getElementById('confirm_password').value) {
+    document.getElementById('message').style.color = 'green';
+    document.getElementById('message').innerHTML = 'matching';
+  } else {
+    document.getElementById('message').style.color = 'red';
+    document.getElementById('message').innerHTML = 'not matching';
+  }
+}
+	</script>
+	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<script>
+    $(document).ready(function() {
+    $("#register").click(function(){
+	
+	var uname=document.getElementById("a01").value;
+	var email=document.getElementById("a02").value;
+	var password=document.getElementById("password").value;
+	//var confirm=document.getElementById("confirm_password").value;
+	var phone=document.getElementById("a03").value;
+	var type=document.getElementById("a04").value;
+
+
+	$.post("worker_process.php",{name:uname,email:email,pwd:password,phno:phone,type:type},
+	function(data){
+	
+
+	var obj=JSON.parse(data);
+	var worker_id=obj.worker_id;
+	var worker_type=obj.worker_type;
+
+	
+	
+	 sessionStorage.setItem("worker_id", worker_id);
+	  sessionStorage.setItem("worker_type", worker_type);
+	  
+	 if(worker_type=="software engg")
+	{
+	window.location.href='updateprofileaccount.html';
+		 }
+    else if(worker_type=="Drivers"){
+         window.location.href='updateprofileaccount.html';
+		 }
+		 else if(worker_type=="Chief"){
+         window.location.href='updateprofileaccount.html';
+		 }
+		 else if(worker_type=="Doctors"){
+         window.location.href='updateprofileaccount.html';
+		 }
+		 else if(worker_type=="Technician"){
+         window.location.href='updateprofileaccount.html';
+		 }
+		 else if(worker_type=="Photographer"){
+         window.location.href='updateprofileaccount.html';
+		 }
+		 else if(worker_type=="Salesman"){
+         window.location.href='updateprofileaccount.html';
+		 }
+		 else if(worker_type=="Accountant"){
+         window.location.href='updateprofileaccount.html';
+		 }
+else if(worker_type=="Plumbers"){
+ window.location.href='updateprofileaccount.html';
+ } 
+
+	});
+	
+	
+	
+	
+	
+	
+	
+    /*if(type=="software engg")
+	{
+	window.location.href='updateprofileweb.html?name='+uname+'&email='+email+'&password='+password+'&phone='+phone+'&type'+type;
+		 }
+    else if(type=="Drivers"){
+         window.location.href='updateprofiledrive.html?name='+uname+'&email='+email+'&password='+password+'&phone='+phone+'&type'+type;
+		 }
+		 else if(type=="Chief"){
+         window.location.href='updateprofilechief.html?name='+uname+'&email='+email+'&password='+password+'&phone='+phone+'&type'+type;
+		 }
+		 else if(type=="Doctors"){
+         window.location.href='updateprofiledoctor.html?name='+uname+'&email='+email+'&password='+password+'&phone='+phone+'&type'+type;
+		 }
+		 else if(type=="Technician"){
+         window.location.href='updateprofiletech.html?name='+uname+'&email='+email+'&password='+password+'&phone='+phone+'&type'+type;
+		 }
+		 else if(type=="Photographer"){
+         window.location.href='updateprofilephoto.html?name='+uname+'&email='+email+'&password='+password+'&phone='+phone+'&type'+type;
+		 }
+		 else if(type=="Salesman"){
+         window.location.href='updateprofilesales.html?name='+uname+'&email='+email+'&password='+password+'&phone='+phone+'&type'+type;
+		 }
+		 else if(type=="Accountant"){
+         window.location.href='updateprofileaccount.html?name='+uname+'&email='+email+'&password='+password+'&phone='+phone+'&type'+type;
+		 }
+else if(type=="Plumbers"){
+ window.location.href='updateprofileplumber.html?name='+uname+'&email='+email+'&password='+password+'&phone='+phone+'&type'+type; } */
+ });
+});
+</script>
+
+
+	<script>
+function validateForm() {
+    var x = document.forms["myForm"]["email"].value;
+    var atpos = x.indexOf("@");
+    var dotpos = x.lastIndexOf(".");
+    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+        alert("Not a valid e-mail address");
+        return false;
+    }
+}
+</script>
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="images/img-01.png" alt="IMG">
+				</div>
+
+				<form name="myForm"  method="post" class="login100-form validate-form" >
+					<span class="login100-form-title">
+						Worker Register
+					</span>
+
+				<div class="wrap-input100 validate-input" data-validate = "Valid Name Required">
+						<input id="a01" class="input100" type="text" name="name" placeholder="Name" ><!--pattern="[A-Z,a-z]*"  required-->
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user-circle" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<input  id="a02" class="input100" type="text" name="email" placeholder="Email" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+				
+					
+					
+					<div class="wrap-input100 validate-input" data-validate = "Valid password is required: atleast 8 digits">
+						<input id="password" class="input100" type="password"  name="pwd" placeholder="password" onkeyup="check()">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Valid password is required: atleast 8 digits">
+						<input id="confirm_password" class="input100" type="password"  name="cpwd" placeholder="confirm password" onkeyup="check()">
+						<span id='message'></span>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Valid phone number required">
+						<input  id="a03" class="input100" type="text" name="phno" placeholder="Phone No"> <!-- pattern="[0-9]{10}" required-->
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-phone-square" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Valid Type of work Required" >
+						<select  id="a04" class="input100" name="type"> <!--required-->
+						 <option value="" disabled selected hidden>Type Of Work</option>
+                         <option value="software engg">Software Engineer</option>
+                         <option value="Drivers">Drivers</option>
+                         <option value="Chief">Chief</option>
+                         <option value="Doctors">Doctors</option>
+						 <option value="Technician">Technician</option>
+                         <option value="Photographer">Photographer</option>
+                         <option value="Salesman">Salesman</option>
+						 <option value="Accountant">Accountant</option>
+                         <option value="Plumbers">Plumbers</option>
+						
+                        </select>	
+						 <span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-address-book" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<!--
+					<div class="wrap-input100 validate-input" data-validate = "Valid Address Required">
+						<input class="input100" type="text" name="add1" placeholder="Address1" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-address-book" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Valid Address Required">
+						<input class="input100" type="text" name="add2" placeholder="Address2" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-address-book" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Valid City Required">
+						<input class="input100" type="text" name="city" placeholder="City" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-home" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate = "Valid Date Required">
+						<input class="input100" type="date" name="date" placeholder="date of birth" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-calendar" aria-hidden="true"></i>
+						</span>
+					</div>-->
+
+					
+					
+				</form>
+					<div class="container-login100-form-btn" >
+						<button class="login100-form-btn1" id="register">
+							Register
+						</button>
+					</div>
+					
+					<div class="text-center p-t-12">
+						<span class="txt1">
+							Already Have Account?
+						</span>
+						<a class="txt2" href="login1.html">
+							Login
+						</a>
+					</div>	
+			</div>
+		</div>
+	</div>
+	
+	
+
+	
+	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+	<script src="vendor/select2/select2.min.js"></script>
+	
+
+	<script src="vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+
+	<!--<script src="js/main1.js"></script>-->
+
+</body>
+</html>

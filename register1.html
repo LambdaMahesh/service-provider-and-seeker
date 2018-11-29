@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Costomer Register</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	
+
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/pwd.css">
+	<script>
+	var check = function() {
+  if (document.getElementById('password').value ==
+    document.getElementById('confirm_password').value) {
+    document.getElementById('message').style.color = 'green';
+    document.getElementById('message').innerHTML = 'matching';
+  } else {
+    document.getElementById('message').style.color = 'red';
+    document.getElementById('message').innerHTML = 'not matching';
+  }
+}
+
+
+
+
+$(document).ready(function(){
+    $("#register").click(function(){
+	
+	var uname=document.getElementById("a01").value;
+	var email=document.getElementById("a02").value;
+	var password=document.getElementById("password").value;
+	//var confirm=document.getElementById("confirm_password").value;
+	var phone=document.getElementById("a03").value;
+	var add1=document.getElementById("a04").value;
+	var add2=document.getElementById("a05").value;
+	var city=document.getElementById("a06").value;
+	var dob=document.getElementById("a07").value;
+	var pic=document.getElementById("a08").value;
+
+
+
+	$.post("customer_process.php",{name:uname,email:email,pwd:password,phno:phone,add1:add1,add2:add2,city:city,dob:dob,pic:pic},
+	function(data){
+	var obj=JSON.parse(data);
+	var cust_id=obj.cost_id;
+	
+	
+	window.location.href="customer_dashboard.php?cid="+cust_id;
+	
+
+	});
+		});
+		});
+	
+	</script>
+
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="images/img-01.png" alt="IMG">
+				</div>
+
+				<form name="myForm" class="login100-form validate-form">
+					<span class="login100-form-title">
+						Customer Register
+					</span>
+
+				<div class="wrap-input100 validate-input" data-validate = "Valid Name Required">
+						<input id="a01" class="input100" type="text" name="name" placeholder="Name" pattern="[A-Z,a-z]*">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user-circle" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="wrap-input100 validate-input" >
+						<input id="a02" class="input100" type="text" name="email" placeholder="Email">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" >
+						<input  id="password" class="input100" type="password"  name="pwd" placeholder="password" onkeyup="check()">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input">
+						<input id="confirm_password" class="input100" type="password"  name="cpwd" placeholder="confirm password" onkeyup="check()">
+						<span id='message'></span>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Valid phone number required">
+						<input  id="a03" class="input100" type="text" name="phno" placeholder="Phone No" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-phone-square" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Valid Address Required">
+						<input  id="a04" class="input100" type="text" name="add1" placeholder="Address1" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-address-book" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Valid Address Required">
+						<input  id="a05" class="input100" type="text" name="add2" placeholder="Address2" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-address-book" aria-hidden="true"></i>
+						</span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Valid City Required">
+						<input   id="a06" class="input100" type="text" name="city" placeholder="City" >
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-home" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate = "Valid Date Required">
+						<input   id="a07" class="input100" type="date" name="date" placeholder="date of birth" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-calendar" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="wrap-input100 validate-input" data-validate = "Valid City Required">
+						<input   id="a08" class="input100" type="file" name="pic" placeholder="Your profile pic" accept="image/*" required>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-home" aria-hidden="true"></i>
+						</span>
+					</div>
+					</form>
+					<div class="container-login100-form-btn">
+						<button id="register" class="login100-form-btn">
+							Register
+						</button>
+					</div>
+
+					<div class="text-center p-t-12">
+						<span class="txt1">
+							Already Have Account?
+						</span>
+						<a class="txt2" href="login2.html">
+							Login
+						</a>
+					</div>
+				
+			</div>
+		</div>
+	</div>
+	
+	
+
+	
+	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+	<script src="vendor/select2/select2.min.js"></script>
+
+	<script src="vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+
+	<script src="js/main1.js"></script>
+
+</body>
+</html>
